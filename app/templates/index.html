@@ -1,14 +1,543 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        {%if title%}
-        <title> {{ title }}</title>
-        {% else %} 
-        <title> News Source Article Finder </title>
-        {% endif %}
-    </head>
-    <body>
-        
+
+<head>
+    <meta charset="utf-8">
+    {%if title%}
+    <title> {{ title }}</title>
+    {% else %}
+    <title> News Source Article Finder </title>
+    {% endif %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" type="text/css">
+</head>
+
+<style>
+    @charset "utf-8";
+/*
+Template Name: News Magazine
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+File: Layout CSS
+*/
+
+
+html{overflow-y:scroll;}
+body{margin:0; padding:0; font-size:15px; font-family:Georgia, "Times New Roman", Times, serif; color:#666666; background-color:#FFFFFF;}
+
+.justify{text-align:justify;}
+.bold{font-weight:bold;}
+.center{text-align:center;}
+.right{text-align:right;}
+.nostart{margin:0; padding:0; list-style-type:none;}
+
+.clear{clear:both;}
+br.clear{clear:both; margin-top:-15px;}
+
+a{outline:none; text-decoration:none; color:#059BD8; background-color:#FFFFFF;}
+
+.fl_left, .imgl{float:left;}
+.fl_right, .imgr{float:right;}
+
+img{display:block; margin:0; padding:0; border:none;}
+.imgl, .imgr{border:1px solid #C7C5C8; padding:5px;}
+.imgl{margin:0 8px 8px 0; clear:left;}
+.imgr{margin:0 0 8px 8px; clear:right;}
+
+/* ----------------------------------------------Wrapper------------------------------------- */
+
+div.wrapper{display:block; width:100%; margin:0; text-align:left; border-bottom:1px solid #E3E3E3;}
+div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{margin:0 0 15px 0; padding:0; font-size:20px; font-weight:normal; line-height:normal;}
+.col0, .col0 a{color:#FFFFFF; background-color:#666666;}
+.col2{color:#FFFFFF; background-color:#F6F6F6;}
+
+/* ----------------------------------------------Generalise------------------------------------- */
+
+#header, #topline, #topbar, #breadcrumb, .container, #hpage_cats, #adblock, #socialise, #footer, #copyright{display:block; position:relative; width:960px; margin:0 auto;}
+
+/* ----------------------------------------------TopBar------------------------------------- */
+
+#topline{padding:10px 0;}
+#topline p{float:left; margin:0; padding:0;}
+#topline ul{float:right; margin:0; padding:0; list-style:none;}
+#topline li{display:inline; margin:0 8px 0 0; padding:0 10px 0 0; border-right:1px solid #999999;}
+#topline li.last{margin-right:0; padding-right:0; border:none;}
+
+/* ----------------------------------------------Header------------------------------------- */
+
+#header{padding:2px 0 20px 0;}
+#header .fl_left{display:block; float:left; margin-top:7px; overflow:hidden;}
+#header .fl_right{display:block; float:right; width:468px; height:60px; margin-top:21px; overflow:hidden;}
+#header h1, #header p, #header ul{margin:0; padding:0; list-style:none; line-height:normal;}
+#header h1 a{font-size:46px; color:#999999; background-color:#FFFFFF;}
+#header h1 strong{font-weight:normal; color:#059BD8; background-color:#FFFFFF;}
+#header .fl_left p{text-align:right; margin-top:5px;}
+
+/* ----------------------------------------------Topbar------------------------------------- */
+
+#topbar{padding:20px 0; z-index:1000;}
+#topbar #search{display:block; float:right; margin:0; padding:0; overflow:hidden;}
+
+/* ----------------------------------------------BreadCrumb------------------------------------- */
+
+#breadcrumb{padding:20px 0;}
+#breadcrumb ul{margin:0; padding:0; list-style:none;}
+#breadcrumb ul li{display:inline;}
+#breadcrumb ul li.current a{text-decoration:underline;}
+
+/* ----------------------------------------------Content------------------------------------- */
+
+.container{padding:20px 0;}
+.content{display:block; float:left; width:630px;}
+
+/* Comments */
+
+#comments{margin-bottom:40px;}
+#comments .commentlist{margin:0; padding:0;}
+#comments .commentlist ul{margin:0; padding:0; list-style:none;}
+#comments .commentlist li.comment_odd, #comments .commentlist li.comment_even{margin:0 0 10px 0; padding:15px; list-style:none;}
+#comments .commentlist li.comment_odd{color:#666666; background-color:#F7F7F7;}
+#comments .commentlist li.comment_odd a{color:#059BD8; background-color:#F7F7F7;}
+#comments .commentlist li.comment_even{color:#666666; background-color:#E8E8E8;}
+#comments .commentlist li.comment_even a{color:#059BD8; background-color:#E8E8E8;}
+#comments .commentlist .author .name{font-weight:bold;}
+#comments .commentlist .submitdate{font-size:smaller;}
+#comments .commentlist p{margin:10px 5px 10px 0; padding:0; font-weight:normal; text-transform:none;}
+#comments .commentlist li .avatar{float:right; border:1px solid #EEEEEE; margin:0 0 0 10px;}
+
+/* ----------------------------------------------Column------------------------------------- */
+
+.column{display:block; float:right; width:300px;}
+.column .holder, .column #featured{display:block; width:300px; margin-bottom:20px;}
+.column .holder h2.title{display:block; width:100%; height:65px; margin:0; padding:15px 0 0 0; font-size:20px; line-height:normal; border-bottom:1px dotted #999999;}
+.column .holder h2.title img{float:left; margin:-15px 8px 0 0; padding:5px; border:1px solid #999999;}
+.column div.imgholder{display:block; width:290px; margin:0 0 10px 0; padding:4px; border:1px solid #CCCCCC;}
+.column .holder p.readmore{display:block; width:100%; font-weight:bold; text-align:right; line-height:normal;}
+
+/* Featured Block */
+
+.column #featured ul, .column #featured h2, .column #featured p{margin:0; padding:0; list-style:none; color:#666666; background-color:#F9F9F9;}
+.column #featured a{color:#059BD8; background-color:#F9F9F9;}
+.column #featured li{display:block; width:250px; margin:0; padding:20px 25px; color:#666666; background-color:#F9F9F9;}
+.column #featured li p.imgholder{display:block; width:240px; height:90px; margin:20px 0 15px 0; padding:4px; border:1px solid #CCCCCC;}
+.column #featured li h2{margin:0; padding:0 0 8px 0; font-weight:normal; font-family:Georgia, "Times New Roman", Times, serif; line-height:normal; border-bottom:1px dotted #999999;}
+.column #featured p.readmore{display:block; width:100%; margin-top:15px; font-weight:bold; text-align:right; line-height:normal;}
+
+.column .latestnews{display:block; width:100%; margin:0; padding:0; list-style:none;}
+.column .latestnews li{display:block; width:100%; height:99px; margin:0 0 11px 0; padding:0 0 21px 0; border-bottom:1px dotted #C7C5C8; overflow:hidden;}
+.column .latestnews li.last{margin-bottom:0;}
+.column .latestnews p{display:inline;}
+.column .latestnews img{float:left; margin:0 10px 0 0; padding:4px; border:1px solid #C7C5C8; clear:left;}
+
+/* ----------------------------------------------Homepage Specific------------------------------------- */
+
+#adblock{padding:20px 0;}
+
+#hpage_cats{padding:0 0 5px 0;}
+#hpage_cats .fl_left, #hpage_cats .fl_right{display:block; width:468px; margin-bottom:15px;}
+#hpage_cats .fl_left img, #hpage_cats .fl_right img{float:left; margin:0 10px 0 0; padding:4px; border:1px solid #C7C5C8; clear:left;}
+#hpage_cats h2{display:block; width:100%; margin:0 0 15px 0; padding:5px 0; color:#666666; background-color:#EFEFEF; text-align:right; font-size:13px;}
+#hpage_cats h2 a{margin:0 5px 0 0; color:#059BD8; background-color:#EFEFEF; font-weight:bold; text-transform:uppercase;}
+#hpage_cats p{margin:0 0 8px 0; padding:0;}
+
+#hpage_latest{display:block; width:100%;}
+#hpage_latest h2{margin:0 0 15px 0; padding:0 0 8px 0; border-bottom:2px solid #E3E3E3;}
+#hpage_latest ul{margin:0; padding:0; list-style:none; display:inline;}
+#hpage_latest li{display:block; float:left; width:200px; margin:0 15px 0 0; padding:0;}
+#hpage_latest li.last{margin-right:0;}
+#hpage_latest img{margin:0; padding:4px; border:1px solid #C7C5C8;}
+#hpage_latest .readmore{font-weight:bold; text-align:right;}
+
+/* ----------------------------------------------Footer------------------------------------- */
+
+#footer{padding:20px 0;}
+#footer h2, #footer p, #footer ul, #footer a{margin:0; padding:0; font-weight:normal; list-style:none; line-height:normal;}
+#footer h2{color:#CCCCCC; background-color:#FFFFFF; font-size:18px; font-weight:normal; margin-bottom:10px; padding-bottom:8px; border-bottom:1px dotted #999999;}
+#footer li{margin-bottom:5px;}
+#footer .footbox{display:block; float:left; width:180px; margin:0 15px 0 0; padding:0;}
+#footer .last{margin:0;}
+
+/* ----------------------------------------------Social Bar With Newsletter------------------------------------- */
+
+#socialise{padding:20px 0;}
+#socialise ul{display:inline; margin:0; padding:0; list-style:none; font-size:20px; font-family:Georgia, "Times New Roman", Times, serif;}
+#socialise li{display:block; float:left; margin:0 120px 0 0; text-align:center;}
+#socialise li span{display:block; margin:8px 0 0 0;}
+#socialise li.last{margin-right:0;}
+#newsletter{display:block; float:right; width:300px;}
+#newsletter h2, #newsletter p{margin:0; padding:0; line-height:normal;}
+#newsletter h2{margin-bottom:5px;}
+
+/* ----------------------------------------------Copyright------------------------------------- */
+
+div.col8{border:none;}
+#copyright{padding:15px 0;}
+#copyright p{margin:0; padding:0;}
+
+
+form, fieldset, legend{margin:0; padding:0; border:none;}
+legend{display:none;}
+input, textarea, select{font-size:12px; font-family:Georgia, "Times New Roman", Times, serif;}
+
+
+
+/* ----------------------------------------------Search Form------------------------------------- */
+
+#topbar input{display:block; float:left; width:155px; margin:0 5px 0 0; padding:5px; color:#B6B6B6; background-color:#525252; border:1px solid #343434; font-size:12px;}
+#topbar input#go{width:68px; height:26px; margin:0; padding:4px 0; text-transform:uppercase; color:#FFFFFF; background-color:#059BD8; border-color:#396B86; cursor:pointer; font-weight:bold;}
+
+/* ----------------------------------------------Forms in Content Area------------------------------------- */
+
+.container #respond{display:block; width:100%;}
+.container #respond input{width:170px; padding:2px; border:1px solid #CCCCCC; margin:5px 5px 0 0;}
+.container #respond textarea{width:98%; border:1px solid #CCCCCC; padding:2px; overflow:auto;}
+.container #respond p{margin:5px 0;}
+.container #respond #submit, .container #respond #reset{margin:0; padding:5px; color:#666666; background-color:#F7F7F7; border:1px solid #CCCCCC; cursor:pointer;}
+
+/* ----------------------------------------------Newsletter------------------------------------- */
+
+#socialise form{display:block; width:300px; margin:0; padding:10px 0 0 0; border:none;}
+#socialise input{display:block; width:218px; margin:0 0 10px 0; padding:5px; color:#FFFFFF; background-color:#2684B7; border:1px solid #1C5E82; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px;}
+#socialise input#newsletter_go{width:58px; height:62px; margin:0; padding:0; font-weight:bold; text-transform:uppercase; font-family:Georgia, "Times New Roman", Times, serif; font-size:60px; cursor:pointer;}
+
+form, fieldset, legend{margin:0; padding:0; border:none;}
+legend{display:none;}
+input, textarea, select{font-size:12px; font-family:Georgia, "Times New Roman", Times, serif;}
+
+#topnav{display:block; float:left; width:700px; margin:5px 0 0 0; padding:0; list-style:none;}
+#topnav ul, #topnav li{float:left; list-style:none; margin:0; padding:0;}
+#topnav li a:link, #topnav li a:visited, #topnav li a:hover{display:block; margin:0 35px 0 0; padding:0; font-size:14px; text-transform:uppercase; color:#059BD8; background-color:#F6F6F6;}
+#topnav ul ul li a:link, #topnav ul ul li a:visited{border:none;}
+#topnav li.last a{margin-right:0;}
+#topnav li a:hover, #topnav ul li.active a{color:#666666; background-color:#F6F6F6;}
+#topnav li li a:link, #topnav li li a:visited{width:150px; float:none; margin:0; padding:7px 10px; font-size:12px; font-weight:normal; color:#059BD8; background-color:#F6F6F6;}
+#topnav li li a:hover{color:#FFFFFF; background-color:#059BD8;}
+#topnav li ul{z-index:9999; position:absolute; left:-999em; height:auto; width:170px; border-left:1px solid #059BD8; border-bottom:1px solid #059BD8;}
+#topnav li ul a{width:140px;}
+#topnav li ul ul{margin:-32px 0 0 0;}
+#topnav li:hover ul ul{left:-999em;}
+#topnav li:hover ul, #topnav li li:hover ul{left:auto;}
+#topnav li:hover{position:static;}
+#topnav li.last a{margin-right:0;}
+
+/* ----------------------------------------------Column Navigation------------------------------------- */
+
+.column .subnav{display:block; width:250px; padding:25px; background-color:#F9F9F9; margin-bottom:30px;}
+.column .subnav h2{margin:0 0 20px 0; padding:0 0 14px 0; font-size:20px; font-weight:normal; font-family:Georgia, "Times New Roman", Times, serif; color:#666666; background-color:#F9F9F9; line-height:normal; border-bottom:1px dotted #666666;}
+.column .subnav ul{margin:0; padding:0; list-style:none;}
+.column .subnav li{margin:0 0 3px 0; padding:0;}
+.column .subnav ul ul, .column .subnav ul ul ul, .column .subnav ul ul ul ul, .column .subnav ul ul ul ul ul{border-top:none; padding-top:0;}
+.column .subnav a{display:block; margin:0; padding:5px 10px 5px 20px; color:#666666; background:url("images/blue_file.gif") no-repeat 10px center #F9F9F9; text-decoration:none; border-bottom:1px dotted #666666;}
+.column .subnav a:hover{color:#059BD8; background-color:#F9F9F9;}
+.column .subnav ul ul a, .column .subnav ul ul ul a, .column .subnav ul ul ul ul a, .column .subnav ul ul ul ul ul a{background:url("images/black_file.gif") no-repeat #F9F9F9;}
+.column .subnav ul ul a{padding-left:40px; background-position:30px center;}
+.column .subnav ul ul ul a{padding-left:50px; background-position:40px center;}
+.column .subnav ul ul ul ul a{padding-left:60px; background-position:50px center;}
+.column .subnav ul ul ul ul ul a{padding-left:70px; background-position:60px center;}
+
+table{width:100%; border-collapse:collapse; table-layout:auto; vertical-align:top; margin-bottom:15px; border:1px solid #CCCCCC;}
+table thead th{color:#FFFFFF; background-color:#666666; border:1px solid #CCCCCC; border-collapse:collapse; text-align:center; table-layout:auto; vertical-align:middle;}
+table tbody td{vertical-align:top; border-collapse:collapse; border-left:1px solid #CCCCCC; border-right:1px solid #CCCCCC;}
+table thead th, table tbody td{padding:5px; border-collapse:collapse;}
+table tbody tr.light{color:#666666; background-color:#F7F7F7;}
+table tbody tr.dark{color:#666666; background-color:#E8E8E8;}
+
+/* ----------------------------------------------Feature_slide------------------------------------- */
+#featured_slide{display:block; width:630px; height:385px; margin:0; padding:0; overflow:hidden; font-family:Georgia, "Times New Roman", Times, serif;}
+#featured_slide a{color:#FFFFFF; background-color:transparent;}
+#featured_slide a, #featured_slide ul, #featured_slide img{margin:0; padding:0; border:none; outline:none; list-style:none; text-decoration:none;}
+#featured_slide ul{margin:15px 0 0 0;}
+#featured_slide h1, #featured_slide h2, #featured_slide h3, #featured_slide h4, #featured_slide h5, #featured_slide h6, #featured_slide p{margin:0 0 4px 0; padding:0; line-height:normal; font-size:20px; font-weight:normal;}
+#featured_slide a{color:#059AD8; background-color:transparent; font-weight:normal;}
+#featured_slide p{margin:0; font-size:14px;}
+
+.gallery{color:#000; background:#EFEFEF; padding:15px;}
+
+.loader{background:url("../scripts/galleryviewthemes/loader.gif") center center no-repeat;}
+
+.panel .panel-overlay, .panel .overlay-background{height:60px; padding:10px;}
+.panel .overlay-background{background:#222;}
+.panel .panel-overlay{color:white; font-size:0.7em;}
+.panel .panel-overlay a{color:white; text-decoration:underline; font-weight:bold;}
+
+.filmstrip{margin:15px 0 0 0; padding:0;}
+.filmstrip .img_wrap{margin:0; padding:0;}
+
+.frame{}
+.frame .img_wrap{border:1px solid #aaa;}
+.frame.current .img_wrap{border-color:#000;}
+.frame img{border:none;}
+.frame .caption{text-align:center; color:#888;}
+.frame.current .caption{color:#000;}
+
+.pointer{border-color:#000;}
+</style>
+<body id="top">
+    <!-- ####################################################################################################### -->
+    <div class="wrapper">
+      <div id="header">
+        <div class="fl_left">
+          <h1><a href="index.html"><strong>N</strong>ews <strong>M</strong>agazine</a></h1>
+        </div>
+        <div class="fl_right"><a href="#"><img src="images/demo/468x60.gif" alt="" /></a></div>
+        <br class="clear" />
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper col2">
+      <div id="topbar">
+        <div id="topnav">
+          <ul>
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="pages/style-demo.html">Style Demo</a></li>
+            <li><a href="pages/full-width.html">Full Width</a></li>
+            <li><a href="#">DropDown</a>
+              <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+              </ul>
+            </li>
+            <li class="last"><a href="#">A Long Link Text</a></li>
+          </ul>
+        </div>
+        <div id="search">
+          <form action="#" method="post">
+            <fieldset>
+              <legend>Site Search</legend>
+              <input type="text" value="Search Our Website&hellip;"  onfocus="this.value=(this.value=='Search Our Website&hellip;')? '' : this.value ;" />
+              <input type="submit" name="go" id="go" value="Search" />
+            </fieldset>
+          </form>
+        </div>
+        <br class="clear" />
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper">
+      <div class="container">
+        <div class="content">
+          <div id="featured_slide">
+            <ul id="featurednews">
+              <li><img src="images/demo/1.gif" alt="" />
+                <div class="panel-overlay">
+                  <h2>Nullamlacus dui ipsum</h2>
+                  <p>Temperinte interdum sempus odio urna eget curabitur semper convallis nunc laoreet.<br />
+                    <a href="#">Continue Reading &raquo;</a></p>
+                </div>
+              </li>
+              <li><img src="images/demo/2.gif" alt="" />
+                <div class="panel-overlay">
+                  <h2>Aliquatjusto quisque nam</h2>
+                  <p>Temperinte interdum sempus odio urna eget curabitur semper convallis nunc laoreet.<br />
+                    <a href="#">Continue Reading &raquo;</a></p>
+                </div>
+              </li>
+              <li><img src="images/demo/3.gif" alt="" />
+                <div class="panel-overlay">
+                  <h2>Dapiensociis temper donec</h2>
+                  <p>Temperinte interdum sempus odio urna eget curabitur semper convallis nunc laoreet.<br />
+                    <a href="#">Continue Reading &raquo;</a></p>
+                </div>
+              </li>
+              <li><img src="images/demo/4.gif" alt="" />
+                <div class="panel-overlay">
+                  <h2>Semvelit nonummy odio tempus</h2>
+                  <p>Justolacus eger at pede felit in dictum sempus elit curabitur ipsum. Ametpellentum.<br />
+                    <a href="#">Continue Reading &raquo;</a></p>
+                </div>
+              </li>
+              <li><img src="images/demo/5.gif" alt="" />
+                <div class="panel-overlay">
+                  <h2>Pedefamet orci orci quisque</h2>
+                  <p>Nonnam aenenasce morbi liberos malesuada risus id donec volutpat estibulum curabitae.<br />
+                    <a href="#">Continue Reading &raquo;</a></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="column">
+          <ul class="latestnews">
+            <li><img src="images/demo/100x100.gif" alt="" />
+              <p><strong><a href="#">Indonectetus facilis leo.</a></strong> Nullamlacus dui ipsum cons eque loborttis non euis que morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque.</p>
+            </li>
+            <li><img src="images/demo/100x100.gif" alt="" />
+              <p><strong><a href="#">Indonectetus facilis leo.</a></strong> Nullamlacus dui ipsum cons eque loborttis non euis que morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque.</p>
+            </li>
+            <li class="last"><img src="images/demo/100x100.gif" alt="" />
+              <p><strong><a href="#">Indonectetus facilis leo.</a></strong> Nullamlacus dui ipsum cons eque loborttis non euis que morbi penas dapibulum orna. Urnaultrices quis curabitur phasellentesque.</p>
+            </li>
+          </ul>
+        </div>
+        <br class="clear" />
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper">
+      <div id="adblock">
+        <div class="fl_left"><a href="#"><img src="images/demo/468x60.gif" alt="" /></a></div>
+        <div class="fl_right"><a href="#"><img src="images/demo/468x60.gif" alt="" /></a></div>
+        <br class="clear" />
+      </div>
+      <div id="hpage_cats">
+        <div class="fl_left">
+          <h2><a href="#">Environment &raquo;</a></h2>
+          <img src="images/demo/100x100.gif" alt="" />
+          <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>
+          <p>This is a W3C standards compliant free website template from <a href="http://www.os-templates.com/">OS Templates</a>. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a>. Condimentumfelis et amet tellent quisquet a leo lacus nec augue accumsan sagittislaorem dolor sum at urna.</p>
+        </div>
+        <div class="fl_right">
+          <h2><a href="#">Technology &raquo;</a></h2>
+          <img src="images/demo/100x100.gif" alt="" />
+          <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>
+          <p>This template is distributed using a <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>, which allows you to use and modify the template for both personal and commercial use when you keep the provided credit links in the footer.</p>
+        </div>
+        <br class="clear" />
+        <div class="fl_left">
+          <h2><a href="#">Entertainment &raquo;</a></h2>
+          <img src="images/demo/100x100.gif" alt="" />
+          <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>
+          <p>Morbitincidunt maurisque eros molest nunc anteget sed vel lacus mus semper. Anterdumnullam interdum eros dui urna consequam ac nisl nullam ligula vestassa. Condimentumfelis et amet tellent quisquet a leo lacus nec augue accumsan sagittislaorem dolor sum at urna.</p>
+        </div>
+        <div class="fl_right">
+          <h2><a href="#">Politics &raquo;</a></h2>
+          <img src="images/demo/100x100.gif" alt="" />
+          <p><strong><a href="#">Indonectetus facilis leo.</a></strong></p>
+          <p>Morbitincidunt maurisque eros molest nunc anteget sed vel lacus mus semper. Anterdumnullam interdum eros dui urna consequam ac nisl nullam ligula vestassa. Condimentumfelis et amet tellent quisquet a leo lacus nec augue accumsan sagittislaorem dolor sum at urna.</p>
+        </div>
+        <br class="clear" />
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper">
+      <div class="container">
+        <div class="content">
+          <div id="hpage_latest">
+            <h2>Feugiatrutrum rhoncus semper</h2>
+            <ul>
+              <li><img src="images/demo/190x130.gif" alt="" />
+                <p>Nullamlacus dui ipsum conseqlo borttis non euisque morbipen a sdapibulum orna.</p>
+                <p>Urnau ltrices quis curabitur pha sellent esque congue magnisve stib ulum quismodo nulla et.</p>
+                <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+              </li>
+              <li><img src="images/demo/190x130.gif" alt="" />
+                <p>Nullamlacus dui ipsum conseqlo borttis non euisque morbipen a sdapibulum orna.</p>
+                <p>Urnau ltrices quis curabitur pha sellent esque congue magnisve stib ulum quismodo nulla et.</p>
+                <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+              </li>
+              <li class="last"><img src="images/demo/190x130.gif" alt="" />
+                <p>Nullamlacus dui ipsum conseqlo borttis non euisque morbipen a sdapibulum orna.</p>
+                <p>Urnau ltrices quis curabitur pha sellent esque congue magnisve stib ulum quismodo nulla et.</p>
+                <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
+              </li>
+            </ul>
+            <br class="clear" />
+          </div>
+        </div>
+        <div class="column">
+          <div class="holder"><a href="#"><img src="images/demo/300x250.gif" alt="" /></a></div>
+          <div class="holder"><a href="#"><img src="images/demo/300x80.gif" alt="" /></a></div>
+        </div>
+        <br class="clear" />
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper">
+      <div id="footer">
+        <div class="footbox">
+          <h2>Lacus interdum</h2>
+          <ul>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li><a href="#">Praesent et eros</a></li>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li class="last"><a href="#">Praesent et eros</a></li>
+          </ul>
+        </div>
+        <div class="footbox">
+          <h2>Lacus interdum</h2>
+          <ul>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li><a href="#">Praesent et eros</a></li>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li class="last"><a href="#">Praesent et eros</a></li>
+          </ul>
+        </div>
+        <div class="footbox">
+          <h2>Lacus interdum</h2>
+          <ul>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li><a href="#">Praesent et eros</a></li>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li class="last"><a href="#">Praesent et eros</a></li>
+          </ul>
+        </div>
+        <div class="footbox">
+          <h2>Lacus interdum</h2>
+          <ul>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li><a href="#">Praesent et eros</a></li>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li class="last"><a href="#">Praesent et eros</a></li>
+          </ul>
+        </div>
+        <div class="footbox last">
+          <h2>Lacus interdum</h2>
+          <ul>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li><a href="#">Praesent et eros</a></li>
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Suspendisse in neque</a></li>
+            <li class="last"><a href="#">Praesent et eros</a></li>
+          </ul>
+        </div>
+        <br class="clear" />
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper">
+      <div id="socialise">
+        <ul>
+          <li><a href="#"><img src="layout/images/facebook.gif" alt="" /><span>Facebook</span></a></li>
+          <li><a href="#"><img src="layout/images/rss.gif" alt="" /><span>FeedBurner</span></a></li>
+          <li class="last"><a href="#"><img src="layout/images/twitter.gif" alt="" /><span>Twitter</span></a></li>
+        </ul>
+        <div id="newsletter">
+          <h2>NewsLetter Sign Up !</h2>
+          <p>Please enter your Email and Name to join.</p>
+          <form action="#" method="post">
+            <fieldset>
+              <legend>Digital Newsletter</legend>
+              <div class="fl_left">
+                <input type="text" value="Enter name here&hellip;"  onfocus="this.value=(this.value=='Enter name here&hellip;')? '' : this.value ;" />
+                <input type="text" value="Enter email address&hellip;"  onfocus="this.value=(this.value=='Enter email address&hellip;')? '' : this.value ;" />
+              </div>
+              <div class="fl_right">
+                <input type="submit" name="newsletter_go" id="newsletter_go" value="&raquo;" />
+              </div>
+            </fieldset>
+          </form>
+          <p>To unsubsribe please <a href="#">click here &raquo;</a>.</p>
+        </div>
+        <br class="clear" />
+      </div>
+    </div>
+    <!-- ####################################################################################################### -->
+    <div class="wrapper col8">
+      <div id="copyright">
+        <p class="fl_left">Copyright &copy; 2021 - All Rights Reserved - <a href="#">News Magazine</a></p>
+        <br class="clear" />
+      </div>
+    </div>
     </body>
-</html>
+    </html>
