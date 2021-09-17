@@ -1,3 +1,12 @@
+# Newsresource
+## Author
+
+Roy Rasugu
+
+## Description
+
+This is a flask application that has various news sources to choose from and as a user one can choose any and it directs them to their articles. This is all with the use of consuming a NEWS API
+
 ## Livepage
 http://loggednews.herokuapp.com/
 
